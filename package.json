@@ -1,0 +1,24 @@
+{
+  "name": "deployer",
+  "version": "1.0.0",
+  "description": "github webhook deployment facilitated by nodejs listener and Ansible",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "deployer"
+  },
+  "keywords": [
+    "node",
+    "ansible",
+    "deployment",
+    "ec2"
+  ],
+  "author": "Jeremy Anderson",
+  "license": "MIT",
+  "dependencies": {
+    "githubhook": "^1.2.0"
+  }
+}
