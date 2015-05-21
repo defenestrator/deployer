@@ -1,6 +1,6 @@
 - hosts:
     - default
-  user: vagrant
+  user: webserver
   sudo: true
   tasks:
     # Get up-to-date
@@ -29,8 +29,8 @@
       apt: name=nodejs state=present update_cache=yes
 
     # PHP 5.5 + extensions
-    - name: ppa for php 5.5
-      apt_repository: repo='ppa:ondrej/php5'
+    - name: ppa for php 5.6
+      apt_repository: repo='ppa:ondrej/php5-5.6'
 
     - name: install php
       apt: name={{ item }} state=present update_cache=yes
@@ -70,24 +70,24 @@
 #    - name: install postgres server
 #      apt: name=postgresql
 
-    # Beanstalkd
-    - name: install beanstalkd
-      apt: name=beanstalkd
+#    # Beanstalkd
+#    - name: install beanstalkd
+#      apt: name=beanstalkd
 
-    # Beanstalkd Console
-    - name: clone beanstalkd-console
-      git: repo=https://github.com/ptrofimov/beanstalk_console.git dest=/srv/beanstalkd
-
-    - name: configure beanstalkd php-fpm pool
-      template: src=files/beanstalkd.php-fpm dest=/etc/php5/fpm/pool.d/beanstalkd.conf
-      notify: restart php-fpm
+#    # Beanstalkd Console
+#    - name: clone beanstalkd-console
+#      git: repo=https://github.com/ptrofimov/beanstalk_console.git dest=/srv/beanstalkd
+#
+#    - name: configure beanstalkd php-fpm pool
+#      template: src=files/beanstalkd.php-fpm dest=/etc/php5/fpm/pool.d/beanstalkd.conf
+#      notify: restart php-fpm
 
     - name: configure beanstalkd nginx host
       template: src=files/beanstalkd.nginx dest=/etc/nginx/sites-available/beanstalkd
 
-    # GruntJS
-    - name: install gruntjs
-      npm: name=grunt-cli state=present global=yes
+    # gulp.js
+    - name: install gulpjs
+      npm: name=gulp state=present global=yes
 
     # Redis Commander
     - name: install redis commander
@@ -108,9 +108,9 @@
     - name: configure laravel nginx host
       template: src=files/laravel.nginx dest=/etc/nginx/sites-available/laravel
 
-    # Fabric
-    - name: install fabric
-      pip: name=fabric state=present
+#    # Fabric
+#    - name: install fabric
+#      pip: name=fabric state=present
 
     # PECLs
     #- shell: sudo pecl install {{ item }}
