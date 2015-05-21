@@ -9,9 +9,10 @@ var github = githubhook({
     logger: console
 });
 
+//listen for github hooks
 github.listen();
 
-github.on('deploy-ex:refs/heads/master', function (data) {
+github.on('push,release,deploy-ex:refs/heads/master', function (data) {
     // Exec a shell script
     var execOptions = {
         maxBuffer: 1024 * 1024 // Increase max buffer to 1mb
